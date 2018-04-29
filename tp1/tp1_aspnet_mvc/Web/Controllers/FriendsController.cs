@@ -33,6 +33,14 @@ namespace Web.Controllers
             return View(amigos);
         }
 
+        // POST: Friends/CreateCookie
+        [HttpPost]
+        public string CreateCookie(int PessoaID)
+        {
+            Rules.WriteCookie(PessoaID);
+            return "_COOKEADO";
+        }
+
         // GET: Friends/Details/5
         public ActionResult Details(int id)
         {

@@ -19,7 +19,13 @@ namespace Bussines
             
             return DataToBussinessModel(repository.GetUsers());
         }
-        
+
+        public static void WriteCookie(int PessoaID)
+        {
+            var cookie = new HttpCookie("CookieID", PessoaID.ToString());
+            HttpContext.Current.Response.Cookies.Set(cookie);
+        }
+
         private static List<Pessoa> DataToBussinessModel(List<Data.Model.Pessoa> data)
         {
             List<Pessoa> pessoas = new List<Pessoa>();
