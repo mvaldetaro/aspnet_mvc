@@ -19,6 +19,20 @@ namespace Web.Controllers
             return View(amigos);
         }
 
+        public ActionResult WithBirthday()
+        {
+            List<Amigo> amigos = new List<Amigo>();
+            amigos = Helper.ToViewModel(Rules.UsersList());
+            return View(amigos);
+        }
+
+        public ActionResult WithEmail()
+        {
+            List<Amigo> amigos = new List<Amigo>();
+            amigos = Helper.ToViewModel(Rules.UsersList());
+            return View(amigos);
+        }
+
         // GET: Friends/Details/5
         public ActionResult Details(int id)
         {
