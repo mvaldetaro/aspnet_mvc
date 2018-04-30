@@ -8,9 +8,9 @@
 <h2>WithEmail</h2>
 <p>@Html.ActionLink("Lista de amigos com aniversário", "WithBirthday", "Friends")</p>
 
-<p>
+<!--<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>-->
 <table class="table">
     <tr>
         <th></th>
@@ -33,7 +33,7 @@
     {
         <tr>
             <td>
-                <input type="checkbox" value="" />
+                <input type="checkbox" value="@Html.DisplayFor(modelItem => item.PessoaID)" data-nome="@Html.DisplayFor(modelItem => item.Nome)" id="checkbox_@Html.DisplayFor(modelItem => item.PessoaID)" name="checkbox" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PessoaID)

@@ -20,11 +20,29 @@ namespace Bussines
             return DataToBussinessModel(repository.GetUsers());
         }
 
-        public static void WriteCookie(int PessoaID)
+        public static void WriteCookie(string value)
         {
-            var cookie = new HttpCookie("CookieID", PessoaID.ToString());
+            var cookie = new HttpCookie("CookieIDs", value);
             HttpContext.Current.Response.Cookies.Set(cookie);
         }
+
+        public static string ReadCookie(string name)
+        {
+            if (HttpContext.Current.Response.Cookies.AllKeys.Contains(name))
+            {
+                var cookie = HttpContext.Current.Response.Cookies[name];
+                return cookie.Value;
+            }
+
+            if (HttpContext.Current.Request.Cookies.AllKeys.Contains(name))
+            {
+                var cookie = HttpContext.Current.Request.Cookies[name];
+                return cookie.Value;
+            }
+
+            return null;
+        }
+
 
         private static List<Pessoa> DataToBussinessModel(List<Data.Model.Pessoa> data)
         {
@@ -33,6 +51,7 @@ namespace Bussines
             foreach (Data.Model.Pessoa pessoa in data)
             {
                 Pessoa p = new Pessoa();
+                p.PessoaID = pessoa.PessoaID;
                 p.Nome = pessoa.Nome;
                 p.Sobrenome = pessoa.Sobrenome;
                 p.Email = pessoa.Email;

@@ -16,6 +16,7 @@ namespace Web.Lib
             foreach (Pessoa pessoa in data)
             {
                 Amigo p = new Amigo();
+                p.PessoaID = pessoa.PessoaID;
                 p.Nome = pessoa.Nome;
                 p.Sobrenome = pessoa.Sobrenome;
                 p.Email = pessoa.Email;

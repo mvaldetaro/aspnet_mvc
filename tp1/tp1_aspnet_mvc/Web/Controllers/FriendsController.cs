@@ -35,10 +35,17 @@ namespace Web.Controllers
 
         // POST: Friends/CreateCookie
         [HttpPost]
-        public string CreateCookie(int PessoaID)
+        public string CreateCookie(string value)
         {
-            Rules.WriteCookie(PessoaID);
+            Rules.WriteCookie(value);
             return "_COOKEADO";
+        }
+
+        // POST: Friends/ReadCookie
+        [HttpPost]
+        public string ReadCookie()
+        { 
+            return Rules.ReadCookie("CookieIDs");
         }
 
         // GET: Friends/Details/5
