@@ -14,9 +14,9 @@ using WebApi.Domain;
 
 namespace WebApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RequireHttps]
-    //[RoutePrefix("api/Amigoes")]
+    [RoutePrefix("api/Amigoes")]
     public class AmigoesController : ApiController
     {
         private db_amigo_tp3Entities db = new db_amigo_tp3Entities();
