@@ -27,6 +27,7 @@ namespace ConsoleApp
                 } else
                 {
                     Console.Write("Deu xabu!");
+                    Console.Write(message.Content.ReadAsStringAsync().Result);
                 }
             }
             Console.ReadKey();

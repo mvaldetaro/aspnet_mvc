@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApi.Models;
+using WebApi.Domain;
 
 namespace WebApi.Controllers
 {
     //[Authorize]
+    [RequireHttps]
     //[RoutePrefix("api/Amigoes")]
     public class AmigoesController : ApiController
     {
