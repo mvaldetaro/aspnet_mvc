@@ -20,11 +20,12 @@ namespace ConsoleApp
 
             using (var apiClient = new HttpClient())
             {
-                Console.WriteLine(token);
+                //Console.WriteLine(token);
                 var mediaType = new MediaTypeWithQualityHeaderValue("aplication/json");
 
                 apiClient.BaseAddress = new Uri("https://localhost:44352/");
-                apiClient.DefaultRequestHeaders.Accept.Add(mediaType);
+                apiClient.DefaultRequestHeaders.Accept.Clear();
+                apiClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", $"{token}");
 
                 var message = apiClient.GetAsync("api/Amigoes").Result;
 
@@ -42,17 +43,10 @@ namespace ConsoleApp
 
         public static async Task<string> TokenAsync()
         {
-            
-            AuthUser user = new AuthUser()
-            {
-                grant_type = "password",
-                username = "tp3@mail.com",
-                password = "He1w4mv#"
-            };
-
             using (var apiClient = new HttpClient())
             {
 
+                // Usuáro criado utilizando a ferramenta Postman
                 var stringContent = new FormUrlEncodedContent(new[]
                     {
                         new KeyValuePair<string, string>("grant_type", "password"),
@@ -70,19 +64,12 @@ namespace ConsoleApp
 
                     token = tokenData["access_token"].ToString();
 
-                    return "_AUTENTICADO";
+                    return "_AUTENTICADO_";
                 }
 
             }
 
             return token;
         }
-    }
-
-    class AuthUser
-    {
-        public string grant_type { get; set; }
-        public string username { get; set; }
-        public string password { get; set; }
     }
 }
