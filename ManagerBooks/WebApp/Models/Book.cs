@@ -26,6 +26,8 @@ namespace WebApp.Models
         public string Ano { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+        public int SelectedAuthorId { get; set; }
         public virtual ICollection<Author> Authors { get; set; }
     }
 }

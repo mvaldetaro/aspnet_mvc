@@ -39,7 +39,15 @@ namespace WebApp.Controllers
         // GET: Books/Create
         public ActionResult Create()
         {
-            return View();
+            //ViewBag.Authors = new List<Author>();
+
+            //List<Author> list = db.AuthorSet.ToList();
+            //ViewBag.Authors = new MultiSelectList(list, "AuthorId", "FullName");
+
+            var b = new Book();
+            b.Authors = db.AuthorSet.ToList();
+
+            return View(b);
         }
 
         // POST: Books/Create
@@ -47,10 +55,11 @@ namespace WebApp.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "BookId,Title,Isbn,Ano")] Book book)
+        public async Task<ActionResult> Create([Bind(Include = "BookId,Title,Isbn,Ano,SelectedAuthorId,Authors")] Book book)
         {
             if (ModelState.IsValid)
             {
+                book.Authors.Add(db.AuthorSet.Find(book.SelectedAuthorId));
                 db.BookSet.Add(book);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
