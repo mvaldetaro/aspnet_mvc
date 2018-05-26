@@ -11,7 +11,8 @@ namespace WebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Author
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +22,25 @@ namespace WebApp.Models
         }
     
         public int AuthorId { get; set; }
+
+        [Display(Name = "Nome")]
+        [Required(ErrorMessage = "O nome do Autor é obrigatório", AllowEmptyStrings = false)]
+        [StringLength(255,MinimumLength = 4)]
         public string FirstName { get; set; }
+
+        [Display(Name = "Sobrenome")]
+        [Required(ErrorMessage = "O sobrenome do Autor é obrigatório", AllowEmptyStrings = false)]
+        [StringLength(255, MinimumLength = 4)]
         public string LastName { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress)]
+        [StringLength(100, MinimumLength = 5, ErrorMessage ="O Email deve ter no mínimo 5 e no máximo 100 caracteres.")]
         public string Email { get; set; }
+
+        [Required]
+        [Display(Name = "Data de Nascimento")]
+        [DataType(DataType.Date)]
         public string Birthday { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -11,7 +11,8 @@ namespace WebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,12 @@ namespace WebApp.Models
         }
     
         public int BookId { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
+        [RegularExpression("([0-9]+)", ErrorMessage = "ISBN deve conter apenas números")]
         public string Isbn { get; set; }
+        [Required]
         public string Ano { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

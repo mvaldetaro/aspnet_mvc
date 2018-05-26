@@ -11,6 +11,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class AuthorsController : Controller
     {
         private BibliotecaContainer db = new BibliotecaContainer();

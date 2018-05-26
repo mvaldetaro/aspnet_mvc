@@ -11,6 +11,7 @@ using WebApp.Models;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         private BibliotecaContainer db = new BibliotecaContainer();
@@ -120,6 +121,10 @@ namespace WebApp.Controllers
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
             Book book = await db.BookSet.FindAsync(id);
+            var sql = "DELETE FROM [BookAuthor] Where Books_BookId = "+id;
+            db.Database.ExecuteSqlCommand(sql);
+
+
             db.BookSet.Remove(book);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
